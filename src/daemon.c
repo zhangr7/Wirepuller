@@ -18,4 +18,6 @@ void daemonize() {
     chdir("/");
     
     for (int x = sysconf(_SC_OPEN_MAX); x >= 0; x--) close(x);
+
+    printf("Daemon is running.\n");
 }

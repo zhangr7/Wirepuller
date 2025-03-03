@@ -11,6 +11,7 @@
 #include <sys/un.h>
 #include <errno.h>
 #include <sys/epoll.h>
+#include <sys/stat.h>
 
 #define SOCKET_PATH "/tmp/wirepuller.sock"
 #define MAX_EVENTS 10

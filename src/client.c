@@ -9,6 +9,9 @@ int main(int argc, char *argv[]) {
         perror("connect");
         return 1;
     }
+    else {
+        printf("Client connected.\n");
+    }
     
     write(client_fd, argv[1], strlen(argv[1]));
     close(client_fd);
