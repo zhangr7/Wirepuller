@@ -25,12 +25,16 @@ This project implements the following 5 requirements in its design:
 
 ## UNIX Domain Sockets
 Domain sockets are used for local interprocess communication. In wirepuller.h we define the known socket path:
-`#define SOCKET_PATH "/tmp/wirepuller.sock"`
+```
+#define SOCKET_PATH "/tmp/wirepuller.sock"
+```
 Both server.c and client.c utilize this path when creating socket connections.
 
 **server.c**
 We use socket() to return a file descriptor for the server socket.
-`int server_fd = socket(AF_UNIX, SOCK_STREAM, 0);`
+```
+int server_fd = socket(AF_UNIX, SOCK_STREAM, 0);
+```
 
 Then we store the socket path into sockaddr_un, a struct used to define addresses for domain sockets.
 ```
@@ -69,16 +73,22 @@ if (connect(client_fd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
 
 ## Accept Usage
 In the event loop of server.c, we call the accept() system call to accept an incoming connection and return a new socket connection between the server and the client.
-`int client_fd = accept(server_fd, NULL, NULL);`
+```
+int client_fd = accept(server_fd, NULL, NULL);
+```
 
 ## Event Notification 
 The event loop in server.c uses epoll to monitor for client connections.
 
 We first create an epoll instance.
-`int epoll_fd = epoll_create1(0);`
+```
+int epoll_fd = epoll_create1(0);
+```
 
 Then we add the server file descriptor to epoll so we can detect new client connections.
-`epoll_ctl(epoll_fd, EPOLL_CTL_ADD, server_fd, &event);`
+```
+epoll_ctl(epoll_fd, EPOLL_CTL_ADD, server_fd, &event);
+```
 
 We use epoll_wait() in the infinite loop to block until a file descriptor is ready.
 ```
@@ -96,7 +106,9 @@ if (epoll_ctl(epoll_fd, EPOLL_CTL_ADD, client_fd, &client_event) == -1) {
 ```
 
 When client requests come in we handle those requests with handle_client() which will be elaborated in the sections below.
-`handle_client(events[i].data.fd);`
+```
+handle_client(events[i].data.fd);
+```
 
 ## Identifying Clients 
 In handle_client() in client_handler.c we use getsockopt() from SO_PEERCRED to ensure local user identity by returning various ID's.
