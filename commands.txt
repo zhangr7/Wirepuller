@@ -1,0 +1,9 @@
+// Compile server
+gcc src/main.c src/daemon.c src/client_handler.c src/fd_passer.c src/server.c -Wall -o wirepuller
+
+// Compile client
+gcc src/client.c -Wall -o client
+
+// Check logs (Ubuntu)
+tail -f /var/log/syslog
+

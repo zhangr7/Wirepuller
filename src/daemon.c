@@ -10,6 +10,8 @@ void daemonize() {
     signal(SIGCHLD, SIG_IGN);
     signal(SIGHUP, SIG_IGN);
     
+    printf("Daemon is running.\n");
+
     pid = fork();
     if (pid < 0) exit(EXIT_FAILURE);
     if (pid > 0) exit(EXIT_SUCCESS);
@@ -18,6 +20,4 @@ void daemonize() {
     chdir("/");
     
     for (int x = sysconf(_SC_OPEN_MAX); x >= 0; x--) close(x);
-
-    printf("Daemon is running.\n");
 }
