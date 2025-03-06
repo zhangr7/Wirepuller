@@ -167,9 +167,9 @@ Start the server.
 Start the client.
 > ./client
 
-Simulate multiple clients by opening a new terminal and starting the client and service as above.
+Simulate multiple clients by opening a new terminal and starting the client as above.
 
-After successfully starting the client you will be prompted to enter commands.
+After successfully starting the client you will be prompted to enter commands. Note the total number of events (commands) is capped at 10. If you would like to continue testing past that you need to restart the testing procedure.
 
 Register a service using this command:
 > register your_service_name
