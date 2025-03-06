@@ -13,6 +13,7 @@
 #include <sys/epoll.h>
 #include <sys/stat.h>
 #include <stdbool.h>
+#include <sys/types.h>
 
 #define SOCKET_PATH "/tmp/wirepuller.sock"
 #define MAX_EVENTS 10
@@ -23,6 +24,12 @@ typedef struct {
     char name[256];
     int client_fd;
 } Service;
+
+struct ucred {
+    pid_t pid;
+    uid_t uid;
+    gid_t gid;
+};
 
 extern Service service_list[MAX_SERVICES];
 extern int service_count;

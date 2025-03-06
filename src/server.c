@@ -60,8 +60,8 @@ void event_loop(int server_fd) {
                 syslog(LOG_INFO, "Handling client with FD: %d\n", events[i].data.fd);
                 handle_client(events[i].data.fd);
                 // Properly remove from epoll before closing
-                epoll_ctl(epoll_fd, EPOLL_CTL_DEL, events[i].data.fd, NULL);
-                close(events[i].data.fd);
+                // epoll_ctl(epoll_fd, EPOLL_CTL_DEL, events[i].data.fd, NULL);
+                // close(events[i].data.fd);
                 syslog(LOG_INFO, "Closed client connection: %d\n", events[i].data.fd);
             }
         }

@@ -73,5 +73,4 @@ void handle_client(int client_fd) {
             write(client_fd, "Unknown command\n", 16);
         }
     }
-    close(client_fd);
 }

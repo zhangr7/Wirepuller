@@ -164,13 +164,21 @@ Compile the server and client with the following commands in the terminal:
 Start the server.
 > ./wirepuller
 
-Start the client by registering your first service.
-> ./client register your_service_name
+Start the client.
+> ./client
 
-Simulate multiple clients by opening a new terminal and registering another client and service as above.
+Simulate multiple clients by opening a new terminal and starting the client and service as above.
+
+After successfully starting the client you will be prompted to enter commands.
+
+Register a service using this command:
+> register your_service_name
 
 List all the clients and their services using this command:
-> ./client list
+> list
 
 You can look for a specific service using this command:
-> ./client find your_service_name
+> find your_service_name
+
+You can close the client connection by typing:
+`exit`
